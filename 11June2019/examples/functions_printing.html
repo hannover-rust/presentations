@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    #editor {
+        border-radius: 4px;
+        margin-bottom: 10px;
+        min-height: 16em;
+    }
+
+    #active-code {
+        padding: 10px;
+        border-radius: 4px;
+    }
+
+    #result {
+        padding: 10px;
+        color: #1c1e20;
+        background: #bbbbbb;
+        border-radius: 4px;
+        font-family: monospace;
+        font-size: 16pt;
+    }
+
+    #run-btn {
+        margin: auto;
+        width: 10%;
+        border-radius: 4px;
+        padding: 4px;
+    }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Functions and Printing</title>
+</head>
+<body>
+<div id="active-code">
+    <div id="editor">
+#[allow(dead_code, unused)]
+
+fn main() {
+    // functions & printing
+    {
+        // Everything important about a function is declared in the signature!
+
+        // `fn` declares a function
+        // `(...)` declares the parameter list
+        // `-> ...` is the return type
+        fn add_one(x: i32) -> i32 {
+        // Rust is an "expression oriented" language which means
+        // that we don't need an explicit `return`, the last expression
+        // is the returned.
+        x + 1
+        }
+        assert_eq!(add_one(1), 2);
+    }
+
+    // printing to `stdout`
+    {
+        println!("Hello, World!");
+
+        // formatted print with `{}`
+        println!("1 + 1 = {}", 2);
+
+        #[derive(Debug)]
+        struct Foo { bar: Vec&lt;i32&gt; }
+        let foo = Foo { bar: vec!(1, 2, 3) };
+
+        // debug output with `{:?}`
+        println!("{:?}", foo);
+        // pretty print debug output with `{:#?}`
+        println!("{:#?}", foo);
+    }
+}</div>
+    <div id="result" data-msg-running="Running...">
+        <a id="playlink"><i class="icon-link-ext"></i></a>
+    </div>
+</div>
+<div id="run-btn">
+    <button type="button"
+            class="btn btn-primary btn-sm"
+            id="run-code">
+        Run
+    </button>
+</div>
+<div id="static-code">
+    <pre class='rust'></pre>
+</div>
+<script src="load_ace.js"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    #editor {
+        border-radius: 4px;
+        margin-bottom: 10px;
+        min-height: 16em;
+    }
+
+    #active-code {
+        padding: 10px;
+        border-radius: 4px;
+    }
+
+    #result {
+        padding: 10px;
+        color: #1c1e20;
+        background: #bbbbbb;
+        border-radius: 4px;
+        font-family: monospace;
+        font-size: 16pt;
+    }
+
+    #run-btn {
+        margin: auto;
+        width: 10%;
+        border-radius: 4px;
+        padding: 4px;
+    }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Structs and Impl</title>
+</head>
+<body>
+<div id="active-code">
+    <div id="editor">
+#[allow(dead_code, unused)]
+
+/// `struct`s and `impl`s
+fn main() {
+    #[derive(Debug)] // Some traits can be automatically generated
+    struct Point {
+        x: f32,
+        y: f32,
+    }
+
+    impl Point {
+        fn new(x: f32, y: f32) -> Point {
+            Point { x, y }
+        }
+    }
+
+    let point = Point::new(1.0, 2.0);
+
+    // Traits are implementation contracts (aka interfaces)
+    // Composition of common functionality
+    // An example is the `Default` trait in the standard library, which is
+    // used when a default value is wanted/needed and is defined as
+    // ```
+    // pub trait Default {
+    //     fn default() -> Self;
+    // }
+    // ```
+    // and implemented as follows:
+
+    #[allow(unused_imports)]
+    use std::default::Default; // already included in `std::prelude::*`
+
+    impl Default for Point {
+        fn default() -> Point {
+            Point { x: 0.0, y: 0.0 }
+        }
+    }
+
+    let default_point = Point::default();
+
+    println!("point: {:?}", point);
+    println!("default: {:?}", default_point);
+
+    // Requires impl of `std::format::Display` trait
+    // println!("point: {}", point);
+}</div>
+    <div id="result" data-msg-running="Running...">
+        <a id="playlink"><i class="icon-link-ext"></i></a>
+    </div>
+</div>
+<div id="run-btn">
+    <button type="button"
+            class="btn btn-primary btn-sm"
+            id="run-code">
+        Run
+    </button>
+</div>
+<div id="static-code">
+    <pre class='rust'></pre>
+</div>
+<script src="load_ace.js"></script>
+</body>
+</html>

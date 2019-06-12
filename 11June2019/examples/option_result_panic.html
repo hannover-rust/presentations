@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    #editor {
+        border-radius: 4px;
+        margin-bottom: 10px;
+        min-height: 16em;
+    }
+
+    #active-code {
+        padding: 10px;
+        border-radius: 4px;
+    }
+
+    #result {
+        padding: 10px;
+        color: #1c1e20;
+        background: #bbbbbb;
+        border-radius: 4px;
+        font-family: monospace;
+        font-size: 16pt;
+    }
+
+    #run-btn {
+        margin: auto;
+        width: 10%;
+        border-radius: 4px;
+        padding: 4px;
+    }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Option, Result, and Panic!</title>
+</head>
+<body>
+<div id="active-code">
+    <div id="editor">
+#[allow(dead_code, unused)]
+
+// Note: `T` and `E` here are just generic type signatures
+
+fn main() {
+    // `Option` is used if a value could be `undefined` or doesn't exist
+    // It is defined as:
+    // ```
+    // enum Option&lt;T&gt; {
+    //     None,
+    //     Some(T),
+    // }
+    // ```
+    let opt_example = Some(42);
+    match opt_example {
+        None => println!("Got nothing to show."),
+        Some(val) => println!("Got value : {}", val)
+    }
+
+    // `Result` is used when an error could occur
+    // It is defined as:
+    // ```
+    // #[must_use]
+    // enum Result&lt;T, E&gt; {
+    //     Ok(T),
+    //     Some(E),
+    // }
+    // ```
+    // The `#[must_use]` compiler directive means that the value must be
+    // assigned or otherwise used. This is to prevent blindly calling
+    // functions which could fail.
+    let result: Result<&str, &str> = Ok("Some Text");
+    match result {
+        Ok(val) => println!("Got: {}", val),
+        Err(err) => println!("Error: {}", err)
+    }
+
+    // `panic!` is used for unrecoverable errors
+    // panic!("Oops...");
+
+    // Warning: Some std-lib functions panic!
+    {
+        let array = vec![1, 2, 3, 4];
+        let val = array[20]; // <- panic!
+
+        // `unwrap()` can directly get a value from an `Option` or `Result`
+        // but panics on `None` or `Error` respectively
+        let opt: Option&lt;i32&gt; = None;
+        let val = opt.unwrap(); // <- panic!
+    }
+}</div>
+    <div id="result" data-msg-running="Running...">
+        <a id="playlink"><i class="icon-link-ext"></i></a>
+    </div>
+</div>
+<div id="run-btn">
+    <button type="button"
+            class="btn btn-primary btn-sm"
+            id="run-code">
+        Run
+    </button>
+</div>
+<div id="static-code">
+    <pre class='rust'></pre>
+</div>
+<script src="load_ace.js"></script>
+</body>
+</html>

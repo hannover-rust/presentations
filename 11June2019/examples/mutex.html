@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    #editor {
+        border-radius: 4px;
+        margin-bottom: 10px;
+        min-height: 16em;
+    }
+
+    #active-code {
+        padding: 10px;
+        border-radius: 4px;
+    }
+
+    #result {
+        padding: 10px;
+        color: #1c1e20;
+        background: #bbbbbb;
+        border-radius: 4px;
+        font-family: monospace;
+        font-size: 16pt;
+    }
+
+    #run-btn {
+        margin: auto;
+        width: 10%;
+        border-radius: 4px;
+        padding: 4px;
+    }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Mutex</title>
+</head>
+<body>
+<div id="active-code">
+    <div id="editor">
+use std::sync::Mutex;
+
+fn main() {
+    let data = vec![1, 2, 3];
+
+    // mutex owns data
+    let mutex = Mutex::new(data);
+
+    // compilation error: data was moved before locking
+    //data.push(4);
+
+    {
+        // take mutex lock
+        let mut d = mutex.lock().unwrap();
+        d.push(5);
+        println!("{:?}", d);
+        // lock released automatically at end of scope
+    }
+
+    // can't use moved `data`; now owned by `mutex`
+    //println!("{:?}", data);
+
+    // can't forget to take lock
+    println!("{:?}", mutex.lock().unwrap());
+}</div>
+    <div id="result" data-msg-running="Running...">
+        <a id="playlink"><i class="icon-link-ext"></i></a>
+    </div>
+</div>
+<div id="run-btn">
+    <button type="button"
+            class="btn btn-primary btn-sm"
+            id="run-code">
+        Run
+    </button>
+</div>
+<div id="static-code">
+    <pre class='rust'></pre>
+</div>
+<script src="load_ace.js"></script>
+</body>
+</html>

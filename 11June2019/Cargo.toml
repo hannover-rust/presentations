@@ -1,0 +1,13 @@
+[package]
+name = "hannover-rust-11june2019"
+version = "0.1.0"
+authors = ["cjschneider2 <cjschneider2@users.noreply.github.com>"]
+edition = "2018"
+
+[dependencies]
+rocket = "*"
+
+[dependencies.rocket_contrib]
+version = "*"
+default-features = false
+features = ["helmet", "serve"]

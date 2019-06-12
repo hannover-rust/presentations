@@ -1,0 +1,198 @@
+<!doctype html>
+<html>
+<style>
+    .slide-background-content {
+        top: 20%;
+        bottom: 10%;
+        left: 15%;
+        width: 70% !important;
+        height: 80% !important;
+    }
+</style>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/monokai.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <p>The Rust Programming Language</p>
+            <img src="./assets/ferris_animation.gif">
+        </section>
+        <section>
+            <h2>What is Rust?</h2>
+            <p>"Systems" programming language</p>
+            <ul>
+                <li>compiled</li>
+                <li>no runtime</li>
+                <li>no garbage collector</li>
+                <li>OS kernel <-> web</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Why Rust?</h2>
+            <ul>
+                <li>memory safety</li>
+                <li>fast</li>
+                <li>type system</li>
+                <li>tooling</li>
+                <li>stability</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Memory Safety</h2>
+            <p>no invalid memory accesses</p>
+            <ul>
+                <li>no buffer overflow</li>
+                <li>no dangling pointers</li>
+                <li>no data races</li>
+                <li>no use after free</li>
+                <li>no double free</li>
+                <li>no null de-referencing</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Ownership & Lifetimes</h2>
+            <section>
+                <h2>Memory safety guaranteed at compile time</h2>
+            </section>
+            <section>
+                <h2>Ownership Rules:</h2>
+                <ul>
+                    <li>Each value has an "owner"</li>
+                    <li>There can only be one owner</li>
+                    <li>When the owner goes out of scope, the value will be dropped</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Borrowing:</h2>
+                <ul>
+                    <li>Multiple immutable references are allowed</li>
+                    <li>A single mutable reference</li>
+                    <li>A borrowed value always has to live longer than its references</li>
+                </ul>
+            </section>
+            <section>
+                <p>Ownership and lifetimes allow the compiler to statically
+                    check the usage of resources; including memory</p>
+            </section>
+            <section data-background-iframe="../examples/mutex.html"
+                     data-background-interactive></section>
+        </section>
+        <section>
+            <h2>The Rust Language</h2>
+            <section data-background-iframe="../examples/variables_types.html"
+                     data-background-interactive></section>
+            <section data-background-iframe="../examples/functions_printing.html"
+                     data-background-interactive></section>
+            <section data-background-iframe="../examples/if_for_while_loop.html"
+                     data-background-interactive></section>
+            <section data-background-iframe="../examples/enum_match.html"
+                     data-background-interactive></section>
+            <section data-background-iframe="../examples/struct_impl.html"
+                     data-background-interactive></section>
+            <section data-background-iframe="../examples/option_result_panic.html"
+                     data-background-interactive></section>
+        </section>
+        <section>
+            <h2>Tools</h2>
+            <section>
+                <h3>cargo : project management</h3>
+                <ul>
+                    <li>create</li>
+                    <li>build / check</li>
+                    <li>test</li>
+                    <li>run</li>
+                    <li>doc</li>
+                </ul>
+            </section>
+            <section>
+                <h3>rustup : compiler version manager</h3>
+                <ul>
+                    <li>updates</li>
+                    <li>stable, beta, nightly</li>
+                    <li>built-in tools</li>
+                    <li>cross-compile targets</li>
+                    <li>Rust documentation</li>
+                </ul>
+            </section>
+            <section>
+                <h3>rustfmt : code formatter</h3>
+                <p>rustup component add rustfmt</p>
+            </section>
+            <section>
+                <h3>clippy : code linter</h3>
+                <p>rustup component add clippy</p>
+            </section>
+            <section>
+                <h3>
+                    <a href="https://play.rust-lang.org/">Rust playground</a>
+                </h3>
+                <p>run code examples in your browser</p>
+            </section>
+        </section>
+        <section>
+            <h2>Resources</h2>
+            <ul>
+                <li><a href="https://github.com/brson/stdx">
+                    stdx - Standard library extensions</a></li>
+                <li><a href="https://doc.rust-lang.org/rust-by-example">
+                    Rust by Example</a></li>
+                <li><a href="https://rust-lang-nursery.github.io/rust-cookbook">
+                    Rust Cookbook</a></li>
+                <li><a href="https://exercism.io/my/tracks/rust">
+                    Exercism.io</a></li>
+                <li><a href="https://doc.rust-lang.org/nomicon/README.html">
+                    Rustonomicon</a></li>
+            </ul>
+        </section>
+        <section>
+            <h2>Practice</h2>
+            <ul>
+                <li>install rust</li>
+                <li>make new project</li>
+                <li>implement</li>
+                <li>discuss</li>
+            </ul>
+        </section>
+    </div>
+</div>
+
+<script src="js/reveal.js"></script>
+
+<script>
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+        dependencies: [
+            {src: 'plugin/markdown/marked.js'},
+            {src: 'plugin/markdown/markdown.js'},
+            {src: 'plugin/notes/notes.js', async: true},
+            {src: 'plugin/highlight/highlight.js', async: true}
+        ]
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    #editor {
+        border-radius: 4px;
+        margin-bottom: 10px;
+        min-height: 16em;
+    }
+
+    #active-code {
+        padding: 10px;
+        border-radius: 4px;
+    }
+
+    #result {
+        padding: 10px;
+        color: #1c1e20;
+        background: #bbbbbb;
+        border-radius: 4px;
+        font-family: monospace;
+        font-size: 16pt;
+    }
+
+    #run-btn {
+        margin: auto;
+        width: 10%;
+        border-radius: 4px;
+        padding: 4px;
+    }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Variables and Types</title>
+</head>
+<body>
+<div id="active-code">
+    <div id="editor">
+#[allow(dead_code, unused)]
+
+fn main() {
+
+    // variables & types
+    {
+        // let x = 5;      // types will be inferred based on usage...
+        // let x: i32 = 5; // ... but can be defined at declaration
+        let mut x = 5;     // mutation not allowed unless variable is `mut`able
+
+        x += 1;
+    }
+
+    // primitive types
+    {
+        let bool = true;
+        let int = 0;
+        let float = 0.0;
+        let tuple = (2, "cat", 42.0);
+        let array = [0, 1, 2];
+        let reference = &amp;tuple;
+        let slice = &array[1..]; // reference (and len) to section of array
+        let char = 'f';
+        let string_reference = "Hello, World!";
+    }
+}</div>
+    <div id="result" data-msg-running="Running...">
+        <a id="playlink"><i class="icon-link-ext"></i></a>
+    </div>
+</div>
+<div id="run-btn">
+    <button type="button"
+            class="btn btn-primary btn-sm"
+            id="run-code">
+        Run
+    </button>
+</div>
+<div id="static-code">
+    <pre class='rust'></pre>
+</div>
+<script src="load_ace.js"></script>
+</body>
+</html>
