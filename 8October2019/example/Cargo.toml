@@ -1,0 +1,11 @@
+[package]
+name = "example"
+version = "0.1.0"
+authors = ["4cschneider <charles.schneider@4com.de>"]
+edition = "2018"
+
+[profile.release]
+debug = true
+
+[dependencies]
+libc = "*"
